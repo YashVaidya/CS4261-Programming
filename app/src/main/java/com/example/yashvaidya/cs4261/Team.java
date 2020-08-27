@@ -5,16 +5,18 @@ public class Team {
     private String name;
     private String description;
     private String id;
+    private String members;
 
     public Team(){
 
     }
 
-    public Team(String name, String description, String id)
+    public Team(String name, String description, String id, String members)
     {
         this.name = name;
         this.description = description;
         this.id = id;
+        this.members = members;
     }
 
     public String getDescription() {
@@ -27,5 +29,9 @@ public class Team {
 
     public String getId() {
         return id;
+    }
+
+    public String getMembers() {
+        return members;
     }
 }

@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddActivity extends AppCompatActivity {
     private EditText name;
     private EditText description;
+    private EditText members;
     private FirebaseUser user;
 
     @Override
@@ -25,6 +26,7 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
         name = findViewById(R.id.nameInput);
         description = findViewById(R.id.desInput);
+        members = findViewById(R.id.membersInput);
         Button add = findViewById(R.id.addButton);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -45,6 +47,7 @@ public class AddActivity extends AppCompatActivity {
     public Boolean addTeam(DatabaseReference teamFire) {
         String teamName = name.getText().toString();
         String teamDes = description.getText().toString();
+        String teamMembers = members.getText().toString();
         String id = teamFire.push().getKey();
 
         if((TextUtils.isEmpty(name.getText()))|| (TextUtils.isEmpty(description.getText())))
@@ -53,10 +56,11 @@ public class AddActivity extends AppCompatActivity {
             return Boolean.FALSE;
         }
         else{
-            Team newTeam = new Team(teamName, teamDes, id);
+            Team newTeam = new Team(teamName, teamDes, id, teamMembers);
             teamFire.child(id).setValue(newTeam);
             name.setText("");
             description.setText("");
+            members.setText("");
             Toast.makeText(AddActivity.this,"Add Successful",Toast.LENGTH_LONG).show();
             return Boolean.TRUE;
         }

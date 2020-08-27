@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent teamInfo = new Intent(getApplicationContext(), ViewTeamActivity.class);
                 teamInfo.putExtra("teamName", teamsList.get(i).getName());
                 teamInfo.putExtra("teamDescription", teamsList.get(i).getDescription());
+                teamInfo.putExtra("teamMembers", teamsList.get(i).getMembers());
                 startActivity(teamInfo);
             }
         });
